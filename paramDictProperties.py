@@ -1,3 +1,6 @@
+from .localization import l10n
+_ = l10n.gettext
+
 from typing import get_type_hints, Callable
 
 from enum import Enum
@@ -31,7 +34,7 @@ class pSimple(pdprop):
     def __get__(self, instance:baseParamDict, owner):
         status = getattr(instance, self._status_name, 0)
         if status == 0:
-            raise AttributeError(f'Property {outYellow('\''+self.fget.__name__+'\'')} not set.')
+            raise AttributeError(_('Property %s not set.') % outYellow('\''+self.fget.__name__+'\''))
         return instance._cont[self.fget.__name__]
     
     def __set__(self, instance:baseParamDict, value):
@@ -68,13 +71,13 @@ class pStrict(pdprop):
     def __get__(self, instance:baseParamDict, owner):
         status = getattr(instance, self._status_name, 0)
         if status == 0:
-            raise AttributeError(f'Property {outYellow('\''+self.fget.__name__+'\'')} not set.')
+            raise AttributeError(_('Property %s not set.') % outYellow('\''+self.fget.__name__+'\''))
         return instance._cont[self.fget.__name__]
     
     def __set__(self, instance:baseParamDict, value):
         aType:type = get_type_hints(self.fget)['return']
         if not isinstance(value, aType):
-            raise TypeError(f'Property {outYellow('\''+self.fget.__name__+'\'')} must be of type {outGreen(aType)}.')
+            raise TypeError(_('Property %s must be of type %s.') % (outYellow('\''+self.fget.__name__+'\''), outGreen(aType)))
         instance._cont[self.fget.__name__] = value
         setattr(instance, self._status_name, 1)
 
@@ -88,7 +91,7 @@ class pStrictOpt(pdprop):
     def __set__(self, instance:baseParamDict, value):
         aType:type = get_type_hints(self.fget)['return']
         if not isinstance(value, aType):
-            raise TypeError(f'Property {outYellow('\''+self.fget.__name__+'\'')} must be of type {outGreen(aType)}.')
+            raise TypeError(_('Property %s must be of type %s.') % (outYellow('\''+self.fget.__name__+'\''), outGreen(aType)))
         instance._cont[self.fget.__name__] = value
         setattr(instance, self._status_name, 1)
     
@@ -109,16 +112,16 @@ class pList(pdprop):
     def __get__(self, instance:baseParamDict, owner):
         status = getattr(instance, self._status_name, 0)
         if status == 0:
-            raise AttributeError(f'Property {outYellow('\''+self.fget.__name__+'\'')} not set.')
+            raise AttributeError(_('Property %s not set.') % outYellow('\''+self.fget.__name__+'\''))
         return instance._cont[self.fget.__name__]
     
     def __set__(self, instance:baseParamDict, value):
         aType:type = get_type_hints(self.fget)['return'].__args__[0]
         if not isinstance(value, list):
-            raise TypeError(f'Property {outYellow('\''+self.fget.__name__+'\'')} must be of type {outGreen(list[aType])}.')
+            raise TypeError(_('Property %s must be of type %s.') % (outYellow('\''+self.fget.__name__+'\''), outGreen(list[aType])))
         for item in value:
             if not isinstance(item, aType):
-                raise TypeError(f'Property {outYellow('\''+self.fget.__name__+'\'')} must be of type {outGreen(list[aType])}.')
+                raise TypeError(_('Property %s must be of type %s.') % (outYellow('\''+self.fget.__name__+'\''), outGreen(list[aType])))
         instance._cont[self.fget.__name__] = value
         setattr(instance, self._status_name, 1)
 
@@ -132,10 +135,10 @@ class pListOpt(pdprop):
     def __set__(self, instance:baseParamDict, value):
         aType:type = get_type_hints(self.fget)['return'].__args__[0]
         if not isinstance(value, list):
-            raise TypeError(f'Property {outYellow('\''+self.fget.__name__+'\'')} must be of type {outGreen(list[aType])}.')
+            raise TypeError(_('Property %s must be of type %s.') % (outYellow('\''+self.fget.__name__+'\''), outGreen(list[aType])))
         for item in value:
             if not isinstance(item, aType):
-                raise TypeError(f'Property {outYellow('\''+self.fget.__name__+'\'')} must be of type {outGreen(list[aType])}.')
+                raise TypeError(_('Property %s must be of type %s.') % (outYellow('\''+self.fget.__name__+'\''), outGreen(list[aType])))
         instance._cont[self.fget.__name__] = value
         setattr(instance, self._status_name, 1)
     
@@ -150,14 +153,14 @@ class pPd(pdprop):
     def __get__(self, instance:baseParamDict, owner):
         status = getattr(instance, self._status_name, 0)
         if status == 0:
-            raise AttributeError(f'Property {outYellow('\''+self.fget.__name__+'\'')} not set.')
+            raise AttributeError(_('Property %s not set.') % outYellow('\''+self.fget.__name__+'\''))
         aType:type = get_type_hints(self.fget)['return']
         return aType(source=instance._cont[self.fget.__name__])
     
     def __set__(self, instance:baseParamDict, value:baseParamDict):
         aType:type = get_type_hints(self.fget)['return']
         if not isinstance(value, aType):
-            raise TypeError(f'Property {outYellow('\''+self.fget.__name__+'\'')} must be of type {outGreen(aType)}.')
+            raise TypeError(_('Property %s must be of type %s.') % (outYellow('\''+self.fget.__name__+'\''), outGreen(aType)))
         instance._cont[self.fget.__name__] = value.content
         setattr(instance, self._status_name, 1)
 
@@ -172,7 +175,7 @@ class pPdOpt(pdprop):
     def __set__(self, instance:baseParamDict, value:baseParamDict):
         aType:type = get_type_hints(self.fget)['return']
         if not isinstance(value, aType):
-            raise TypeError(f'Property {outYellow('\''+self.fget.__name__+'\'')} must be of type {outGreen(aType)}.')
+            raise TypeError(_('Property %s must be of type %s.') % (outYellow('\''+self.fget.__name__+'\''), outGreen(aType)))
         instance._cont[self.fget.__name__] = value.content
         setattr(instance, self._status_name, 1)
     
@@ -187,7 +190,7 @@ class pPdList(pdprop):
     def __get__(self, instance:baseParamDict, owner):
         status = getattr(instance, self._status_name, 0)
         if status == 0:
-            raise AttributeError(f'Property {outYellow('\''+self.fget.__name__+'\'')} not set.')
+            raise AttributeError(_('Property %s not set.') % outYellow('\''+self.fget.__name__+'\''))
         aType:type = get_type_hints(self.fget)['return'].__args__[0]
         return [aType(source=item) for item in instance._cont[self.fget.__name__]]
     
@@ -195,7 +198,7 @@ class pPdList(pdprop):
         aType:type = get_type_hints(self.fget)['return'].__args__[0]
         for item in value:
             if not isinstance(item, aType):
-                raise TypeError(f'Property {outYellow('\''+self.fget.__name__+'\'')} must be of type {outGreen(list[aType])}.')
+                raise TypeError(_('Property %s must be of type %s.') % (outYellow('\''+self.fget.__name__+'\''), outGreen(list[aType])))
         instance._cont[self.fget.__name__] = [item.content for item in value]
         setattr(instance, self._status_name, 1)
 
@@ -211,7 +214,7 @@ class pPdListOpt(pdprop):
         aType:type = get_type_hints(self.fget)['return'].__args__[0]
         for item in value:
             if not isinstance(item, aType):
-                raise TypeError(f'Property {outYellow('\''+self.fget.__name__+'\'')} must be of type {outGreen(list[aType])}.')
+                raise TypeError(_('Property %s must be of type %s.') % (outYellow('\''+self.fget.__name__+'\''), outGreen(list[aType])))
         instance._cont[self.fget.__name__] = [item.content for item in value]
         setattr(instance, self._status_name, 1)
     

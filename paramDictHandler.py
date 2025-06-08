@@ -1,10 +1,13 @@
+from .localization import l10n
+_ = l10n.gettext
+
 from abc import ABC, abstractmethod
 
 class baseParamDict(ABC):
     def __init__(self, id:str='', source=None):
         super().__init__()
         if type(id) is not str:
-            raise TypeError('Paramdict ID must be a string!')
+            raise TypeError(_('Paramdict ID must be a string!'))
         if source is None:
             self._cont = {'class': self._setcls(), 'id': id}
             self._id = self._cont['id']
@@ -13,7 +16,7 @@ class baseParamDict(ABC):
         else:
             self._cont = source
             if self._cont['class'] != self._setcls():
-                raise TypeError('Paramdict Class mismatch!')
+                raise TypeError(_('Paramdict Class mismatch!'))
             self._id = self._cont['id']
             self._cla = self._cont['class']
         self._check()
