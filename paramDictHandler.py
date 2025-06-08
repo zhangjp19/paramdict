@@ -1,26 +1,4 @@
-import json
-from pathlib import Path
 from abc import ABC, abstractmethod
-from copy import copy, deepcopy
-from functools import wraps
-
-pdPathRoot = Path('./')
-
-def changePdPathRoot(pathRoot: Path):
-    global pdPathRoot
-    pdPathRoot = pathRoot
-
-def getAllPdPaths():
-    pass
-
-def getPdFile(path: Path):
-    with open(pdPathRoot + path, 'r') as jsfile:
-        pdfile = json.load(jsfile)
-    return pdfile
-
-def savePd(path, pd):
-    with open(pdPathRoot + path, 'w') as jsfile:
-        json.dump(pd.content, jsfile)
 
 class baseParamDict(ABC):
     def __init__(self, id:str='', source=None):
@@ -58,4 +36,3 @@ class baseParamDict(ABC):
     @property
     def content(self):
         return self._cont
-
