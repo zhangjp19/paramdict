@@ -3,6 +3,8 @@ _ = l10n.gettext
 
 from abc import ABC, abstractmethod
 
+__all__ = ['baseParamDict']
+
 class baseParamDict(ABC):
     def __init__(self, id:str='', source=None):
         super().__init__()
