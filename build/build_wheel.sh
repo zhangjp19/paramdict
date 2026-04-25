@@ -7,6 +7,10 @@ target_files=(
     "README.md"
 )
 
+if [ ! -d "$target_dir" ]; then
+    mkdir "$target_dir"
+fi
+
 pyfilenum=$(ls "$target_dir" | grep "\.py$" | wc -l)
 if [ "$pyfilenum" -gt 0 ]; then
     rm "$target_dir"/*.py
