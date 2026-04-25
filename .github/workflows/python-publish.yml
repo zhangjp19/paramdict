@@ -26,11 +26,14 @@ jobs:
         with:
           python-version: "3.x"
 
+      - uses: whtsky/msgfmt-action@20190305
+        with:
+          args: "locale/zh_CN/LC_MESSAGES/zh_CN.po -o locale/zh_CN/LC_MESSAGES/zh_CN.mo"
+
       - name: Build release distributions
         run: |
           # NOTE: put your own distribution build steps here.
           python -m pip install build
-          ./update_mo.sh
           cd build && ./build_wheel.sh
           cd ..
 
