@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "paramdict"
+version = "1.0.0"
+dependencies = []
+license = "MIT"
+license-files = ["LICENSE"]
+readme = "README.md"
+authors = [
+    { name = "zhangjp19", email = "asamatteroffact@yeah.net" }
+]
+
+[tool.setuptools.packages.find]
+exclude = ["*.sh"]
