@@ -30,6 +30,7 @@ jobs:
         run: |
           # NOTE: put your own distribution build steps here.
           python -m pip install build
+          ./update_mo.sh
           cd build && ./build_wheel.sh
           cd ..
 
