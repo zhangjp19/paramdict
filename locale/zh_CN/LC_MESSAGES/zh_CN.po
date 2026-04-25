@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2025-06-08 20:03+0800\n"
-"PO-Revision-Date: 2025-06-08 20:30+0800\n"
+"PO-Revision-Date: 2026-04-16 23:56+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -18,17 +18,17 @@ msgstr ""
 
 #: paramDictHandler.py:10
 msgid "Paramdict ID must be a string!"
-msgstr "ID必须是字符串哦😮"
+msgstr "ID必须是字符串喵"
 
 #: paramDictHandler.py:19
 msgid "Paramdict Class mismatch!"
-msgstr "Class不对！怎么看都不对吧！！！"
+msgstr "Class不对！怎么看都不对喵！！！"
 
 #: paramDictProperties.py:37 paramDictProperties.py:74
 #: paramDictProperties.py:115 paramDictProperties.py:156
 #: paramDictProperties.py:193
 msgid "Property %s not set."
-msgstr "我们至今不知道属性%s的值是多少👋"
+msgstr "缺失属性%s的值喵"
 
 #: paramDictProperties.py:80 paramDictProperties.py:94
 #: paramDictProperties.py:121 paramDictProperties.py:124
@@ -36,4 +36,4 @@ msgstr "我们至今不知道属性%s的值是多少👋"
 #: paramDictProperties.py:163 paramDictProperties.py:178
 #: paramDictProperties.py:201 paramDictProperties.py:217
 msgid "Property %s must be of type %s."
-msgstr "这个值怎么想都对不上属性%s的类型%s吧 ×ω×"
+msgstr "这个值对不上属性%s的类型%s喵"

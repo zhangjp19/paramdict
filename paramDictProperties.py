@@ -20,7 +20,10 @@ class ValueStatus(Enum):
     SET = 1
 
 UNSET = ValueStatus.UNSET
+'Specific representation of an unset value.'
+
 SET = ValueStatus.SET
+'Specific representation of a value that has been set.'
 
 class pdprop(object):
 
@@ -31,6 +34,7 @@ class pdprop(object):
         self.fget = func
 
 class pSimple(pdprop):
+    'Simple property. No type checking. Must be set before getting.'
 
     def __get__(self, instance:baseParamDict, owner):
         value = instance._cont.get(self.fget.__name__, UNSET)
@@ -43,6 +47,7 @@ class pSimple(pdprop):
         instance._cont[self.fget.__name__] = aType(value)
 
 class pSimpleOpt(pdprop):
+    'Simple property. No type checking. Optional.'
     def __get__(self, instance:baseParamDict, owner):
         return instance._cont.get(self.fget.__name__, UNSET)
     
@@ -60,6 +65,8 @@ class pSimpleOpt(pdprop):
 #         return _pSimple
 
 class pStrict(pdprop):
+    'Strict property. Type checking enforced. Must be set before getting.'
+
     def __get__(self, instance:baseParamDict, owner):
         value = instance._cont.get(self.fget.__name__, UNSET)
         if value is UNSET:
@@ -73,6 +80,7 @@ class pStrict(pdprop):
         instance._cont[self.fget.__name__] = value
 
 class pStrictOpt(pdprop):
+    'Strict property. Type checking enforced. Optional.'
     def __get__(self, instance:baseParamDict, owner):
         return instance._cont.get(self.fget.__name__, UNSET)
     
@@ -86,6 +94,7 @@ class pStrictOpt(pdprop):
         instance._cont.pop(self.fget.__name__, None)
 
 class pList(pdprop):
+    'List property. Type checking enforced. Must be set before getting.'
     def __get__(self, instance:baseParamDict, owner):
         value = instance._cont.get(self.fget.__name__, UNSET)
         if value is UNSET:
@@ -102,6 +111,7 @@ class pList(pdprop):
         instance._cont[self.fget.__name__] = value
 
 class pListOpt(pdprop):
+    'List property. Type checking enforced. Optional.'
     def __get__(self, instance:baseParamDict, owner):
         return instance._cont.get(self.fget.__name__, UNSET)
     
@@ -118,6 +128,7 @@ class pListOpt(pdprop):
         instance._cont.pop(self.fget.__name__, None)
 
 class pPd(pdprop):
+    'ParamDict property. Type checking enforced. Must be set before getting.'
     def __get__(self, instance:baseParamDict, owner):
         value = instance._cont.get(self.fget.__name__, UNSET)
         if value is UNSET:
@@ -132,6 +143,7 @@ class pPd(pdprop):
         instance._cont[self.fget.__name__] = value.content
 
 class pPdOpt(pdprop):
+    'ParamDict property. Type checking enforced. Optional.'
     def __get__(self, instance:baseParamDict, owner):
         value = instance._cont.get(self.fget.__name__, UNSET)
         if value is UNSET:
@@ -149,6 +161,7 @@ class pPdOpt(pdprop):
         instance._cont.pop(self.fget.__name__, None)
 
 class pPdList(pdprop):
+    'ParamDict List property. Type checking enforced. Must be set before getting.'
     def __get__(self, instance:baseParamDict, owner):
         value = instance._cont.get(self.fget.__name__, UNSET)
         if value is UNSET:
@@ -164,6 +177,7 @@ class pPdList(pdprop):
         instance._cont[self.fget.__name__] = [item.content for item in value]
 
 class pPdListOpt(pdprop):
+    'ParamDict List property. Type checking enforced. Optional.'
     def __get__(self, instance:baseParamDict, owner):
         value = instance._cont.get(self.fget.__name__, UNSET)
         if value is UNSET:
@@ -182,6 +196,7 @@ class pPdListOpt(pdprop):
         instance._cont.pop(self.fget.__name__, None)
 
 class pEnm(pdprop):
+    'Enum property. Type checking enforced. Must be set before getting.'
     def __get__(self, instance:baseParamDict, owner):
         value = instance._cont.get(self.fget.__name__, UNSET)
         if value is UNSET:
@@ -196,6 +211,7 @@ class pEnm(pdprop):
         instance._cont[self.fget.__name__] = value.value
 
 class pEnmOpt(pdprop):
+    'Enum property. Type checking enforced. Optional.'
     def __get__(self, instance:baseParamDict, owner):
         value = instance._cont.get(self.fget.__name__, UNSET)
         if value is UNSET:
@@ -213,6 +229,7 @@ class pEnmOpt(pdprop):
         instance._cont.pop(self.fget.__name__, None)
 
 class pEnmList(pdprop):
+    'Enum List property. Type checking enforced. Must be set before getting.'
     def __get__(self, instance:baseParamDict, owner):
         value = instance._cont.get(self.fget.__name__, UNSET)
         if value is UNSET:
@@ -228,6 +245,7 @@ class pEnmList(pdprop):
         instance._cont[self.fget.__name__] = [item.value for item in value]
 
 class pEnmListOpt(pdprop):
+    'Enum List property. Type checking enforced. Optional.'
     def __get__(self, instance:baseParamDict, owner):
         value = instance._cont.get(self.fget.__name__, UNSET)
         if value is UNSET:
