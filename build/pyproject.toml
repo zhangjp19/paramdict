@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "paramdict"
-version = "1.0.1"
+version = "1.0.2"
 dependencies = []
 license = "MIT"
 license-files = ["LICENSE"]
@@ -12,6 +12,7 @@ readme = "README.md"
 authors = [
     { name = "zhangjp19", email = "asamatteroffact@yeah.net" }
 ]
+description = "A lightweight wrapper around Python dictionary."
 
 [project.urls]
 Documentation = "https://paramdict-docs.readthedocs.io/en/latest/"
