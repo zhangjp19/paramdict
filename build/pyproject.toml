@@ -13,5 +13,10 @@ authors = [
     { name = "zhangjp19", email = "asamatteroffact@yeah.net" }
 ]
 
+[project.urls]
+Documentation = ""
+Repository = ""
+Issues = ""
+
 [tool.setuptools.packages.find]
 exclude = ["*.sh"]
