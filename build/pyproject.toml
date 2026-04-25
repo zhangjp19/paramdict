@@ -14,9 +14,9 @@ authors = [
 ]
 
 [project.urls]
-Documentation = ""
-Repository = ""
-Issues = ""
+Documentation = "https://paramdict-docs.readthedocs.io/en/latest/"
+Repository = "https://github.com/zhangjp19/paramdict"
+Issues = "https://github.com/zhangjp19/paramdict/issues"
 
 [tool.setuptools.packages.find]
 exclude = ["*.sh"]
